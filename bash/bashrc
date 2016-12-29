@@ -1,8 +1,17 @@
 set -o vi
 
 ## miniconda setup
-export PATH=~/miniconda3/bin:"$PATH"
-eval "$(register-python-argcomplete conda)"
+has_conda=false
+if [ -d "${HOME}/miniconda3" ]; then
+    export PATH=~/miniconda3/bin:"$PATH"
+    has_conda=true
+elif [ -d "${HOME}/miniconda" ]; then
+    export PATH=~/miniconda/bin:"$PATH"
+    has_conda=true
+fi
+if [ $has_conda ]; then
+    eval "$(register-python-argcomplete conda)"
+fi
 
 ## bash completion (powerd by homebrew)
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -18,3 +27,42 @@ if [ -d $alias_dir ]; then
     done
     shopt -u nullglob
 fi
+
+## local path additions
+path_dir="${HOME}/.config/bash/path"
+if [ -d $path_dir ]; then
+    shopt -s nullglob
+    for path_file in ${path_dir}/*.sh; do
+	source $path_file
+    done
+    shopt -u nullglob
+fi
+
+## local bashrc
+lbashrc="${HOME}/.config/bash/local_bashrc"
+if [ -f $lbashrc ]; then
+    source $lbashrc
+fi
+
+# enable fs colors
+export CLICOLOR=1
+  
+function prompt_command {
+if [[ $PWD = */Prog* ]]; then
+    export WCOL="1;32"
+elif [[ $PWD = */EPFL* ]]; then
+    export WCOL="0;32"
+elif [[ $PWD = /usr* ]]; then
+    export WCOL="1;31"
+else
+    export WCOL="0;37"
+fi
+if [[ $HOSTNAME = *monch* ]]; then
+    export HCOL="0;31"
+else 
+    export HCOL="0;34"
+fi
+}
+
+export PROMPT_COMMAND=prompt_command
+export PS1="\[\e[\$(echo -n \$HCOL)m\]\h:\[\e[\$(echo -n \$WCOL)m\]\W \[\e[0;33m\]\u\[\e[0m\]\$ "
