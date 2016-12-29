@@ -114,9 +114,7 @@ function getScarlettOutputDevice()
     return hs.audiodevice.findOutputByName('Scarlett Solo USB')
 end
 
--- App Shortcuts
-----------------
-hs.hotkey.bind({"alt"}, "F1", function()
+hs.hotkey.bind({"command"}, "F1", function()
     local builtin = getBuiltinOutputDevice()
     local scarlett = getScarlettOutputDevice()
     if hs.audiodevice.defaultOutputDevice() == builtin then
@@ -127,6 +125,8 @@ hs.hotkey.bind({"alt"}, "F1", function()
     hs.alert.show("Output Device: " .. hs.audiodevice.defaultOutputDevice():name())
 end)
 
+-- App Shortcuts
+----------------
 function toggleApplication(bundle_id)
     local app = hs.application.get(bundle_id)
     if app and app:isFrontmost() then
@@ -137,10 +137,10 @@ function toggleApplication(bundle_id)
     end
 end
 
-hs.hotkey.bind({"alt"}, "F2", function()
+hs.hotkey.bind({"command"}, "F2", function()
     toggleApplication('com.googlecode.iterm2')
 end)
 
-hs.hotkey.bind({"alt"}, "F3", function()
+hs.hotkey.bind({"command"}, "F3", function()
     toggleApplication('com.qvacua.VimR')
 end)
