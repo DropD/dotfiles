@@ -1,5 +1,15 @@
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 [user]
 	name = DropD
 	email = r.haeuselmann@gmx.ch
+[push]
+	default = simple
 [core]
 	excludesfile = /Users/ricoh/.config/git/ignore
+[alias]
+	graph = log --graph --oneline
+	stclone = !sh -c 'name=$(basename $0) && git remote add subtree_$name $1 && git fetch subtree_$name && git checkout -b stbranch_$name subtree_$name/master && git checkout master && git read-tree --prefix=$0/ -u stbranch_$name'
+	stpull = !sh -c 'git checkout stbranch_$0 && git pull && git checkout master && git merge --squash -s subtree --no-commit stbranch_$0'
+	stdiff = !sh -c 'git diff-tree -p stbranch_$0'
