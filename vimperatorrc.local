@@ -1,0 +1,2 @@
+nnoremap gh ogh<Enter>
+au PageLoad about:home|.*youtube.* normal <Esc>
