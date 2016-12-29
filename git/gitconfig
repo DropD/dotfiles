@@ -1,0 +1,5 @@
+[user]
+	name = DropD
+	email = r.haeuselmann@gmx.ch
+[core]
+	excludesfile = /Users/ricoh/.config/git/ignore

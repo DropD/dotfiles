@@ -1,0 +1,20 @@
+set -o vi
+
+## miniconda setup
+export PATH=~/miniconda3/bin:"$PATH"
+eval "$(register-python-argcomplete conda)"
+
+## bash completion (powerd by homebrew)
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+## aliases
+alias_dir="${HOME}/.config/bash/alias"
+if [ -d $alias_dir ]; then
+    shopt -s nullglob
+    for alias_file in ${alias_dir}/*.sh; do
+        source $alias_file
+    done
+    shopt -u nullglob
+fi
