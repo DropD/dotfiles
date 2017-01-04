@@ -7,7 +7,11 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/ricoh/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
+[diff]
+	tool = vimdiff
+[mergetool "vimdiff"]
+	path = nvim
 [alias]
 	graph = log --graph --oneline
 	stclone = !sh -c 'name=$(basename $0) && git remote add subtree_$name $1 && git fetch subtree_$name && git checkout -b stbranch_$name subtree_$name/master && git checkout master && git read-tree --prefix=$0/ -u stbranch_$name'
