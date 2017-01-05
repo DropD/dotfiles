@@ -1,7 +1,27 @@
 set -o vi
 
+## If not running interactively, don't do anything
+#case $- in
+#    *i*) ;;
+#      *) return;;
+#esac
+
+## editor, prefer nvim / vimr if found on the path, fall back to vim / gvim
+EDITOR=vim && [ -x $(command -v nvim) ] && EDITOR=vim
+VISUAL=gvim && [ -x $(command -v vimr) ] && VISUAL=vimr
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 ## miniconda setup
-has_conda=false
 if [ -d "${HOME}/miniconda3" ]; then
     export PATH=~/miniconda3/bin:"$PATH"
     has_conda=true
@@ -9,6 +29,7 @@ elif [ -d "${HOME}/miniconda" ]; then
     export PATH=~/miniconda/bin:"$PATH"
     has_conda=true
 fi
+has_conda=false && [ -x "$(command -v conda)"] && has_conda=true
 if [ $has_conda ]; then
     eval "$(register-python-argcomplete conda)"
 fi
