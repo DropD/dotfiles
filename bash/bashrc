@@ -29,7 +29,7 @@ elif [ -d "${HOME}/miniconda" ]; then
     export PATH=~/miniconda/bin:"$PATH"
     has_conda=true
 fi
-has_conda=false && [ -x "$(command -v conda)"] && has_conda=true
+has_conda=false && [ -x "$(command -v conda)" ] && has_conda=true
 if [ $has_conda ]; then
     eval "$(register-python-argcomplete conda)"
 fi
@@ -67,6 +67,10 @@ fi
 
 # enable fs colors
 export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# set ipythondir
+test -d "$HOME/.config/ipython" && export IPYTHONDIR=$HOME/.config/ipython
   
 function prompt_command {
 if [[ $PWD = */Prog* ]]; then
