@@ -10,6 +10,7 @@ call neobundle#local(expand('~/.config/nvim/local/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'eugen0329/vim-esearch'
 NeoBundle 'Marfisc/vorange'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'dsolstad/vim-wombat256i'
