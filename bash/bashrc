@@ -30,13 +30,16 @@ elif [ -d "${HOME}/miniconda" ]; then
     has_conda=true
 fi
 has_conda=false && [ -x "$(command -v conda)" ] && has_conda=true
-if [ $has_conda ]; then
+if [ $has_conda = true ]; then
     eval "$(register-python-argcomplete conda)"
 fi
 
 ## bash completion (powerd by homebrew)
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+has_brew=false && [ -x "$(command -v brew)" ] && has_brew=true
+if [ $has_brew = true ]; then
+    #if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+    #fi
 fi
 
 ## aliases
