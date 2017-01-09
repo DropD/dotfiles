@@ -8,6 +8,7 @@
 	default = simple
 [core]
 	excludesfile = ~/.config/git/ignore
+	editor = nvim
 [diff]
 	tool = vimdiff
 [mergetool "vimdiff"]
