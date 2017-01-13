@@ -52,7 +52,7 @@ call dein#add('xolox/vim-notes', {
 \ ]})
 
 " You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+"~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
 " local
 call dein#local('~/.config/nvim/local')

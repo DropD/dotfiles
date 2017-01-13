@@ -45,6 +45,16 @@ bashrc takes care of exporting ipythondir if ~/.config/inpython exists
 ```
 nvim/init.vim -> ~/.config/nvim/init.vim
 nvim/local/* -> ~/.config/nvim/local/
+nvim/pm* -> ~/.config/nvim/plugin_manager/
+```
+
+to manually configure plugin manager:
+edit ~/.config/nvim/local/settings.vim with
+
+```vim
+let g:settings = {
+\    'plugin_manager' : 'dein' | 'neovim'
+\}
 ```
 
 ## xonsh
