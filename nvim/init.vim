@@ -13,7 +13,7 @@ if !exists('g:settings')
 endif
 
 if g:settings.plugin_manager == ''
-    if filereadable(expand('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim'))
+    if isdirectory(expand('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim'))
         let g:settings.plugin_manager = 'dein'
     else 
 	if isdirectory(expand('~/.config/nvim/bundle/neobundle.vim'))
