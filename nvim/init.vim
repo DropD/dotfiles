@@ -42,9 +42,14 @@ set incsearch
 set virtualedit=all
 
 " appearance (Terminal)
-colorscheme mustang
+set background=dark
+colorscheme vorange
 set cursorline
 hi CursorLine gui=underline guibg=black
+hi notesSingleQuoted ctermfg=LightBlue
+hi pythonStatement ctermfg=172 cterm=bold
+hi pythonDocstring ctermfg=45
+hi Todo ctermfg=1
 
 set relativenumber
 set number
