@@ -35,11 +35,10 @@ set autoindent
 set smartindent
 set shiftwidth=4
 syntax enable
-autocmd Filetype python set tabstop=4|set shiftwidth=4|set expandtab
-autocmd Filetype rst set tabstop=3|set shiftwidth=3|set expandtab
-
-set incsearch
-set virtualedit=all
+augroup FTtab
+    autocmd! Filetype python set tabstop=4|set shiftwidth=4|set expandtab
+    autocmd! Filetype rst set tabstop=3|set shiftwidth=3|set expandtab
+augroup END set incsearch set virtualedit=all
 
 function! RicohSetAppearance()
     set cursorline
@@ -49,7 +48,9 @@ function! RicohSetAppearance()
     hi pythonDocstring ctermfg=45 guifg=#54cddd
     hi Todo ctermfg=1 guifg=#ff0000
 endfunction
-au ColorScheme call RicohSetAppearance()
+augroup Appearance
+    autocmd! ColorScheme call RicohSetAppearance()
+augroup END
 
 " appearance (Terminal)
 if !has('gui')
@@ -90,10 +91,14 @@ if has('gui_macvim')
 endif
 
 "latex
-autocmd Filetype latex,tex imap <C-l><C-p> <Plug>LatexCloseCurEnv
+augroup LatexMaps
+    autocmd! Filetype latex,tex imap <C-l><C-p> <Plug>LatexCloseCurEnv
+augroup END
 
 "waf meta build system
-autocmd BufEnter wscript set filetype=python
+augroup WafFt
+    autocmd! BufEnter wscript set filetype=python
+augroup END
 
 "ricoh.commentor2
 map <Leader>' <Plug>CommentLines
