@@ -37,6 +37,8 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('gregsexton/gitv', {'depends' : ['tpope/vim-fugitive']})
     call dein#add('xolox/vim-misc')
     call dein#add('xolox/vim-notes', {'depends' : ['xolox/vim-misc']})
+    call dein#add('junegunn/limelight.vim')
+    call dein#add('junegunn/goyo.vim')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })

@@ -41,15 +41,20 @@ autocmd Filetype rst set tabstop=3|set shiftwidth=3|set expandtab
 set incsearch
 set virtualedit=all
 
+function! RicohSetAppearance()
+    set cursorline
+    hi CursorLine cterm=underline gui=underline ctermbg=Black guibg=Black
+    hi notesSingleQuoted ctermfg=LightBlue guifg=LightBlue
+    hi pythonStatement ctermfg=172 cterm=bold guifg=172 gui=bold
+    hi pythonDocstring ctermfg=45 guifg=45
+    hi Todo ctermfg=1 guifg=1
+endfunction
+au ColorScheme call RicohSetAppearance()
+
 " appearance (Terminal)
-set background=dark
-colorscheme vorange
-set cursorline
-hi CursorLine gui=underline guibg=black
-hi notesSingleQuoted ctermfg=LightBlue
-hi pythonStatement ctermfg=172 cterm=bold
-hi pythonDocstring ctermfg=45
-hi Todo ctermfg=1
+if !has('gui')
+    colorscheme vorange
+endif
 
 set relativenumber
 set number
@@ -116,3 +121,5 @@ endif
 if g:settings.plugin_manager == 'neobundle'
     NeoBundleCheck
 endif
+
+call RicohSetAppearance()
