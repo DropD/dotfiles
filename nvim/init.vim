@@ -45,9 +45,9 @@ function! RicohSetAppearance()
     set cursorline
     hi CursorLine cterm=underline gui=underline ctermbg=Black guibg=Black
     hi notesSingleQuoted ctermfg=LightBlue guifg=LightBlue
-    hi pythonStatement ctermfg=172 cterm=bold guifg=172 gui=bold
-    hi pythonDocstring ctermfg=45 guifg=45
-    hi Todo ctermfg=1 guifg=1
+    hi pythonStatement ctermfg=172 cterm=bold guifg=#ff9a40 gui=bold
+    hi pythonDocstring ctermfg=45 guifg=#54cddd
+    hi Todo ctermfg=1 guifg=#ff0000
 endfunction
 au ColorScheme call RicohSetAppearance()
 

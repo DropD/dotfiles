@@ -39,6 +39,7 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('xolox/vim-notes', {'depends' : ['xolox/vim-misc']})
     call dein#add('junegunn/limelight.vim')
     call dein#add('junegunn/goyo.vim')
+    call dein#add('Rykka/InstantRst')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })

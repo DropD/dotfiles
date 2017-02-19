@@ -92,5 +92,10 @@ else
 fi
 }
 
+## User bin preceeds all if exists
+if [ -d "${HOME}/bin" ]; then
+    export PATH=~/bin:"$PATH"
+fi
+
 export PROMPT_COMMAND=prompt_command
 export PS1="\[\e[\$(echo -n \$HCOL)m\]\h:\[\e[\$(echo -n \$WCOL)m\]\W \[\e[0;33m\]\u\[\e[0m\]\$ "
