@@ -30,6 +30,10 @@ else
     endif
 endif
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 filetype plugin indent on
 set autoindent
 set smartindent
@@ -105,7 +109,7 @@ map <Leader>' <Plug>CommentLines
 
 "pymode
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint_ignore = "E501,E265"
+let g:pymode_lint_ignore = "E501,E265,W0105,C0301,W0612"
 let g:pymode_lint_checkers = ['pylint', 'pep8']
 
 "neoterm
