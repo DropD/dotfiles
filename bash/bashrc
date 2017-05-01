@@ -23,15 +23,30 @@ shopt -s checkwinsize
 
 ## miniconda setup
 if [ -d "${HOME}/miniconda3" ]; then
-    export PATH=~/miniconda3/bin:"$PATH"
+    export PATH=$PATH:~/miniconda3/bin
     has_conda=true
 elif [ -d "${HOME}/miniconda" ]; then
-    export PATH=~/miniconda/bin:"$PATH"
+    export PATH="$PATH":~/miniconda/bin
     has_conda=true
 fi
 has_conda=false && [ -x "$(command -v conda)" ] && has_conda=true
 if [ $has_conda = true ]; then
     eval "$(register-python-argcomplete conda)"
+fi
+
+# virtualenvwrapper setup
+has_venvwrap=false
+for i in "/usr/local/bin/virtualenvwrapper.sh" "$HOME/.local/bin/virtualenvwrapper.sh"
+do
+    if [ -f $i ]; then
+        has_venvwrap=true
+        venvwrap=$i
+    fi
+done
+if [ $has_venvwrap = true ]; then
+    export WORKON_HOME=$HOME/.venvwrap
+    export PROJECT_HOME=$HOME/EPFL
+    . $venvwrap
 fi
 
 ## bash completion (powerd by homebrew)
@@ -77,19 +92,27 @@ test -d "$HOME/.config/ipython" && export IPYTHONDIR=$HOME/.config/ipython
   
 function prompt_command {
 if [[ $PWD = */Prog* ]]; then
-    export WCOL="1;32"
+    #~ export WCOL="1;32"
+    export WCOL="$(tput setaf 2)$(tput bold)"
 elif [[ $PWD = */EPFL* ]]; then
-    export WCOL="0;32"
+    #~ export WCOL="0;32"
+    export WCOL="$(tput setaf 2)"
 elif [[ $PWD = /usr* ]]; then
-    export WCOL="1;31"
+    #~ export WCOL="1;31"
+    export WCOL="$(tput setaf 1)$(tput bold)"
 else
-    export WCOL="0;37"
+    #~ export WCOL="0;37"
+    export WCOL="$(tput setaf 7)"
 fi
 if [[ $HOSTNAME = *monch* ]]; then
-    export HCOL="0;31"
+    #~ export HCOL="0;31"
+    export HCOL="$(tput setaf 1)"
 else 
-    export HCOL="0;34"
+    #~ export HCOL="0;34"
+    export HCOL="$(tput setaf 4)"
 fi
+export UCOL="$(tput setaf 3)"
+export NOCOL="$(tput op)"
 }
 
 ## User bin preceeds all if exists
@@ -98,4 +121,5 @@ if [ -d "${HOME}/bin" ]; then
 fi
 
 export PROMPT_COMMAND=prompt_command
-export PS1="\[\e[\$(echo -n \$HCOL)m\]\h:\[\e[\$(echo -n \$WCOL)m\]\W \[\e[0;33m\]\u\[\e[0m\]\$ "
+#~ export PS1="\[\e[\$(echo -n \$HCOL)m\]\h:\[\e[\$(echo -n \$WCOL)m\]\W \[\e[0;33m\]\u\[\e[0m\]\$ "
+export PS1="$(echo -n $HCOL)\h:$(echo -n $WCOL)\W $(echo -n $UCOL)\u$(echo -n $NOCOL)$ "
