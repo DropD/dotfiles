@@ -131,4 +131,11 @@ if g:settings.plugin_manager == 'neobundle'
     NeoBundleCheck
 endif
 
+if &diff
+    nnoremap <Leader>dgr :diffget REMOTE<CR> :diffup<CR>
+    nnoremap <Leader>dgl :diffget LOCAL<CR> :diffup<CR>
+    nnoremap <Leader>dgb :diffget BASE<CR> :diffup<CR>
+    nnoremap <Leader>du :diffup<CR>
+endif
+
 call RicohSetAppearance()
