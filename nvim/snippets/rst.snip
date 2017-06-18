@@ -1,0 +1,9 @@
+snippet section1
+abbr section1
+alias s1 sec1
+options head
+   $2
+   ${1:TARGET}
+   ${2:`substitute($1, '.', '=', 'g')`}
+
+   ${0}
