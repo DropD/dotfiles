@@ -163,4 +163,10 @@ endif
 nnoremap <C-u>f :Unite file<CR>
 nnoremap <C-u>b :Unite buffer<CR>
 
+"language server
+set hidden
+let g:LanuageClient_serverCommands = {
+    \ 'python': ['pyls'],
+\ }
+
 call RicohSetAppearance()

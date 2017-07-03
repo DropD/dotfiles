@@ -42,6 +42,13 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('Rykka/InstantRst')
     call dein#add('vim-syntastic/syntastic')
 
+    "Language server 2nd try
+    call dein#add('autozimu/LanguageClient-neovim')
+    call dein#add('junegunn/fzf')
+    call dein#add('Shougo/denite.nvim')
+    call dein#add('Shougo/deoplete.nvim', {'build': ':UpdateRemotePlugins'})
+    call dein#add('Shougo/echodoc.vim')
+
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
