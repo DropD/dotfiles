@@ -42,6 +42,7 @@ syntax enable
 augroup FTtab
     autocmd! Filetype python set tabstop=4|set shiftwidth=4|set expandtab
     autocmd! Filetype rst set tabstop=3|set shiftwidth=3|set expandtab
+    autocmd! BufEnter,BufNew *.feature set tabstop=2|set shiftwidth=2|set expandtab
 augroup END set incsearch set virtualedit=all
 
 function! RicohSetAppearance()
@@ -109,11 +110,27 @@ map <Leader>' <Plug>CommentLines
 
 "pymode
 augroup PyMode
-    autocmd! Filetype python let g:pymode_rope_complete_on_dot = 0
-    autocmd! Filetype python let g:pymode_lint_ignore = "E501,E265,W0105,C0301,W0612"
-    autocmd! Filetype python let g:pymode_lint_checkers = ['pylint', 'pep8']
-    autocmd! Filetype python let g:pymode_lint=0 "off by default
-    autocmd! Filetype python map <Leader>l :PymodeLint
+    autocmd Filetype python let g:pymode_rope_complete_on_dot = 0
+    autocmd Filetype python let g:pymode_lint_ignore = "E501,E265,W0105,C0301,W0612"
+    autocmd Filetype python let g:pymode_lint_checkers = ['pylint', 'pep8']
+    autocmd Filetype python let g:pymode_lint = 0 "off by default
+    autocmd Filetype python map <Leader>l :PymodeLint<CR>
+augroup END
+
+"syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"
+"function! FindConfig(prefix, what, where)
+"    let cfg = findfile(a:what, escape(a:where, ' '), ';')
+"    return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
+"endfunction
+"
+augroup Syntastic
+    autocmd Filetype python let g:syntastic_python_checkers = ['flake8']
+    autocmd Filetype python let g:syntastic_python_flake8_args = '--ignore=E501,E225'
 augroup END
 
 "neoterm
@@ -141,5 +158,9 @@ if &diff
     nnoremap <Leader>dgb :diffget BASE<CR> :diffup<CR>
     nnoremap <Leader>du :diffup<CR>
 endif
+
+"Unite
+nnoremap <C-u>f :Unite file<CR>
+nnoremap <C-u>b :Unite buffer<CR>
 
 call RicohSetAppearance()

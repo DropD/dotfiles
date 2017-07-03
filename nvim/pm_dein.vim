@@ -40,6 +40,7 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('junegunn/limelight.vim')
     call dein#add('junegunn/goyo.vim')
     call dein#add('Rykka/InstantRst')
+    call dein#add('vim-syntastic/syntastic')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
