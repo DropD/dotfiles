@@ -137,10 +137,17 @@ function toggleApplication(bundle_id)
     end
 end
 
+hs.hotkey.bind({"command", "shift"}, "W", function()
+    toggleApplication('com.googlecode.iterm2')
+end)
+
 hs.hotkey.bind({"command"}, "F2", function()
     toggleApplication('com.googlecode.iterm2')
 end)
 
+hs.hotkey.bind({"command", "shift"}, "E", function()
+    toggleApplication('com.qvacua.VimR')
+end)
 hs.hotkey.bind({"command"}, "F3", function()
     toggleApplication('com.qvacua.VimR')
 end)
