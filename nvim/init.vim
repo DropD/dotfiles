@@ -30,6 +30,10 @@ else
     endif
 endif
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 filetype plugin indent on
 set autoindent
 set smartindent
@@ -104,9 +108,13 @@ augroup END
 map <Leader>' <Plug>CommentLines
 
 "pymode
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_lint_ignore = "E501,E265"
-let g:pymode_lint_checkers = ['pylint', 'pep8']
+augroup PyMode
+    autocmd! Filetype python let g:pymode_rope_complete_on_dot = 0
+    autocmd! Filetype python let g:pymode_lint_ignore = "E501,E265,W0105,C0301,W0612"
+    autocmd! Filetype python let g:pymode_lint_checkers = ['pylint', 'pep8']
+    autocmd! Filetype python let g:pymode_lint=0 "off by default
+    autocmd! Filetype python map <Leader>l :PymodeLint
+augroup END
 
 "neoterm
 let g:neoterm_position="vertical"
@@ -125,6 +133,13 @@ endif
 
 if g:settings.plugin_manager == 'neobundle'
     NeoBundleCheck
+endif
+
+if &diff
+    nnoremap <Leader>dgr :diffget REMOTE<CR> :diffup<CR>
+    nnoremap <Leader>dgl :diffget LOCAL<CR> :diffup<CR>
+    nnoremap <Leader>dgb :diffget BASE<CR> :diffup<CR>
+    nnoremap <Leader>du :diffup<CR>
 endif
 
 call RicohSetAppearance()
