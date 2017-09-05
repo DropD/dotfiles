@@ -33,12 +33,14 @@ class CommentorRegistry(object):
         self.__py_version = version_info.major == 3 and '3' or ''
         self.__name = name
 
-    def set_commentor(self, lang, *args, commentor_cls=Commentor):
+    def set_commentor(self, lang, *args, **kwargs):
+        commentor_cls = kwargs.pop('commentor_cls', Commentor)
         self.__registry[lang] = commentor_cls(*args)
 
-    def add_commentor(self, lang, *args, commentor_cls=Commentor):
+    def add_commentor(self, lang, *args, **kwargs):
+        commentor_cls = kwargs.pop('commentor_cls', Commentor)
         if lang not in self.__registry:
-            self.set_commentor(lang, *args, commentor_cls=commentor_cls)
+            self.set_commentor(lang, commentor_cls=commentor_cls, *args)
 
     def activate_commentor(self, lang):
         if lang in self.__registry:

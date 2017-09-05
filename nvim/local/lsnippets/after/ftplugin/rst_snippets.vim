@@ -4,4 +4,4 @@ Snippet s1 <{Title}><CR><{Title:substitute(@z, '.', '=', 'g')}><CR><CR><{}>
 Snippet s2 <{Title}><CR><{Title:substitute(@z, '.', '-', 'g')}><CR><CR><{}>
 Snippet s3 <{Title}><CR><{Title:substitute(@z, '.', '^', 'g')}><CR><CR><{}>
 Snippet par <{Title}><CR><{Title:substitute(@z, '.', '+', 'g')}><CR><CR><{}>
-
+Snippet :: <{}>::<{}><CR><CR><Tab><{}><CR><CR><BS><{}>
