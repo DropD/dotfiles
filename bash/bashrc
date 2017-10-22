@@ -1,5 +1,15 @@
 set -o vi
 
+## local env additions
+path_dir="${HOME}/.config/bash/initenv"
+if [ -d $path_dir ]; then
+    shopt -s nullglob
+    for env_file in ${path_dir}/*.sh; do
+	source $env_file
+    done
+    shopt -u nullglob
+fi
+
 ## If not running interactively, don't do anything
 #case $- in
 #    *i*) ;;
@@ -123,3 +133,6 @@ fi
 export PROMPT_COMMAND=prompt_command
 #~ export PS1="\[\e[\$(echo -n \$HCOL)m\]\h:\[\e[\$(echo -n \$WCOL)m\]\W \[\e[0;33m\]\u\[\e[0m\]\$ "
 export PS1="$(echo -n $HCOL)\h:$(echo -n $WCOL)\W $(echo -n $UCOL)\u$(echo -n $NOCOL)$ "
+
+# added by travis gem
+[ -f /Users/ricohaeuselmann/.travis/travis.sh ] && source /Users/ricohaeuselmann/.travis/travis.sh

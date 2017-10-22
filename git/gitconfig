@@ -7,16 +7,30 @@
 [push]
 	default = simple
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = /Users/ricohaeuselmann/.config/git/ignore
 	editor = nvim
 [diff]
-	tool = vimdiff
+	tool = meld
 [mergetool "vimdiff"]
+	path = nvim
+[mergetool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
 [alias]
 	graph = log --graph --oneline
 	stclone = !sh -c 'name=$(basename $0) && git remote add subtree_$name $1 && git fetch subtree_$name && git checkout -b stbranch_$name subtree_$name/master && git checkout master && git read-tree --prefix=$0/ -u stbranch_$name'
 	stpull = !sh -c 'git checkout stbranch_$0 && git pull && git checkout master && git merge --squash -s subtree --no-commit stbranch_$0'
 	stdiff = !sh -c 'git diff-tree -p stbranch_$0'
-[mergetool "vimdiff"]
-	path = nvim
-	path = nvim
+[merge]
+	tool = meld
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
