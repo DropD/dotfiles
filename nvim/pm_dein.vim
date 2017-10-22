@@ -41,6 +41,8 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('junegunn/goyo.vim')
     call dein#add('Rykka/InstantRst')
     call dein#add('Rykka/riv.vim')
+    call dein#add('vim-syntastic/syntastic')
+
     "~ call dein#add('SirVer/ultisnips')
 
     " You can specify revision/branch/tag.

@@ -116,6 +116,24 @@ augroup PyMode
     autocmd! Filetype python map <Leader>l :PymodeLint
 augroup END
 
+augroup Syntastic
+    autocmd Filetype python let g:syntastic_python_checkers = ['flake8']
+    autocmd Filetype python let g:syntastic_python_flake8_args = '--ignore=E501,E225'
+augroup END
+
+"pymode
+let g:pymode_lint_on_write=0
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
 "neoterm
 let g:neoterm_position="vertical"
 let g:neoterm_automap_keys="\t"
@@ -141,5 +159,15 @@ if &diff
     nnoremap <Leader>dgb :diffget BASE<CR> :diffup<CR>
     nnoremap <Leader>du :diffup<CR>
 endif
+
+"Unite
+nnoremap <C-u>f :Unite file<CR>
+nnoremap <C-u>b :Unite buffer<CR>
+
+"language server
+set hidden
+let g:LanuageClient_serverCommands = {
+    \ 'python': ['pyls'],
+\ }
 
 call RicohSetAppearance()
