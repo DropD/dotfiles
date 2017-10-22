@@ -41,7 +41,7 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('junegunn/goyo.vim')
     call dein#add('Rykka/InstantRst')
     call dein#add('Rykka/riv.vim')
-    call dein#add('SirVer/ultisnips')
+    "~ call dein#add('SirVer/ultisnips')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
