@@ -68,6 +68,7 @@ set number
 let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1
 let NERDTreeShowBookmarks=1
+nmap <C-u>n :NERDTreeToggle<Cr>
 
 "easymotion
 nmap , <Plug>(easymotion-prefix)
@@ -119,6 +120,8 @@ augroup END
 augroup Syntastic
     autocmd Filetype python let g:syntastic_python_checkers = ['flake8']
     autocmd Filetype python let g:syntastic_python_flake8_args = '--ignore=E501,E225'
+    autocmd Filetype python let g:syntastic_mode_map['mode'] = 'passive'
+    autocmd Filetype tex let g:syntastic_tex_checkers = ['chktex']
 augroup END
 
 "pymode
@@ -169,5 +172,6 @@ set hidden
 let g:LanuageClient_serverCommands = {
     \ 'python': ['pyls'],
 \ }
+
 
 call RicohSetAppearance()

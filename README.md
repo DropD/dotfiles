@@ -1,5 +1,11 @@
 # DropD dotfiles
 
+## zsh setup
+
+zsh/zshrc -> ~/.zshrc
+zsh/antibody_plugins.txt -> ~/.zshrc
+zsh/p10k.zsh -> .p10k.zsh
+
 ## bash setup
 
 ```

@@ -31,14 +31,29 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-## miniconda setup
-if [ -d "${HOME}/miniconda3" ]; then
-    export PATH=$PATH:~/miniconda3/bin
-    has_conda=true
-elif [ -d "${HOME}/miniconda" ]; then
-    export PATH="$PATH":~/miniconda/bin
-    has_conda=true
+## local path additions
+path_dir="${HOME}/.config/bash/path"
+if [ -d $path_dir ]; then
+    shopt -s nullglob
+    for path_file in ${path_dir}/*.sh; do
+	source $path_file
+    done
+    shopt -u nullglob
 fi
+
+## conda setup
+miniconda_path="${HOME}/mininconda3"
+miniconda2_path="${HOME}/mininconda"
+anaconda_path="${HOME}/anaconda3"
+anaconda2_path="${HOME}/anaconda"
+brew_anaconda_path="$(brew --prefix)/anaconda3"
+for conda_path in $miniconda_path $miniconda2_path $anaconda_path $anaconda2_path $brew_anaconda_path
+do
+    if [ -d "${conda_path}" ]; then
+        export PATH="${PATH}:${conda_path}/bin"
+        has_conda=true
+    fi
+done
 has_conda=false && [ -x "$(command -v conda)" ] && has_conda=true
 if [ $has_conda = true ]; then
     eval "$(register-python-argcomplete conda)"
@@ -73,16 +88,6 @@ if [ -d $alias_dir ]; then
     shopt -s nullglob
     for alias_file in ${alias_dir}/*.sh; do
         source $alias_file
-    done
-    shopt -u nullglob
-fi
-
-## local path additions
-path_dir="${HOME}/.config/bash/path"
-if [ -d $path_dir ]; then
-    shopt -s nullglob
-    for path_file in ${path_dir}/*.sh; do
-	source $path_file
     done
     shopt -u nullglob
 fi

@@ -42,6 +42,7 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('Rykka/InstantRst')
     call dein#add('Rykka/riv.vim')
     call dein#add('vim-syntastic/syntastic')
+    call dein#add('fenetikm/falcon')
 
     "~ call dein#add('SirVer/ultisnips')
 

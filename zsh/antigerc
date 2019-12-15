@@ -1,0 +1,22 @@
+antigen bundle git
+antigen bundle pip
+antigen bundle brew
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-completions
+antigen bundle alexrochas/zsh-git-semantic-commits
+antigen bundle alexrochas/zsh-path-environment-explorer
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-apple-touchbar
+antigen bundle esc/conda-zsh-completion
+antigen bundle laggardkernel/zsh-iterm2
+#antigen bundle robyrussell/oh-my-zsh plugins/colored-man-pages
+#antigen bundle robyrussell/oh-my-zsh plugins/jsontools
+#antigen bundle robyrussell/oh-my-zsh plugins/osx
+
+## themes
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs user dir rbenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status load)
+antigen theme powerlevel9k/powerlevel9k
+
+antigen apply
+

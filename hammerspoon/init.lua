@@ -1,4 +1,4 @@
--- autoreload
+ -- autoreload
 -------------
 function reloadConfig(files)
     doReload = false
@@ -90,6 +90,21 @@ hs.hotkey.bind({"alt"}, "N", function()
     win:setFrame(f)
 end)
 
+-- Workspace window switcher
+----------------------------
+-- move current window to the space sp
+-- Unfortunately there seems to be no way of finding out how they are arranged
+-- Which makes impossible to push a window to the left / right space of the current one
+-- function MoveWindowToSpace(sp)
+--     local spaces = require("hs._asm.undocumented.spaces")
+--     local win = hs.window.focusedWindow()      -- current window
+--     local uuid = win:screen():spacesUUID()     -- uuid for current screen
+--     local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
+--     spaces:moveWindwToSpace(win:id(), spaceID) -- move window to new space
+--     spaces:changeToSpace(spaceID)              -- follow window to new space
+-- end
+-- hs.hotkey.bind({"ctrl", "alt"}, "1", function() MoveWindowToSpace(1) end)
+
 -- VPN connect/disconnect
 -------------------------
 hs.hotkey.bind({"alt"}, "V", function()
@@ -123,6 +138,41 @@ hs.hotkey.bind({"command"}, "F1", function()
         builtin:setDefaultOutputDevice()
     end
     hs.alert.show("Output Device: " .. hs.audiodevice.defaultOutputDevice():name())
+end)
+
+-- Toggle NextUp Tag
+--------------------
+function toggleNextUpTag()
+    local _, _, folder = hs.osascript.applescript(
+        'tell application "Finder"\n return folder of (first item of (selection as list)) as string\n end tell'
+    )
+     folder = folder:sub(21, -3):gsub(":", "/")
+    local _, _, file = hs.osascript.applescript(
+        'tell application "Finder"\n return name of (first item of (selection as list)) as string\n end tell'
+    )
+    local file = file:sub(9, -3)
+    local path = folder .. file
+    hs.console.printStyledtext('toggleNextUpTag: toggling tag for ' .. path)
+    local tags = hs.fs.tagsGet(path)
+    local tagset = {}
+    if(tags)
+    then
+        hs.console.printStyledtext('toggleNextUpTag: found tags')
+        for index, tag in ipairs(tags) do
+            tagset[tag] = true
+            hs.console.printStyledtext('toggleNextUpTag: found tag: ' .. tag)
+        end
+    end
+    if(tagset['Next Up'])
+    then
+        hs.fs.tagsRemove(path, {'Next Up'})
+    else
+        hs.fs.tagsSet(path, {'Next Up'})
+    end
+end
+
+hs.hotkey.bind({"alt"}, "P", function()
+    toggleNextUpTag()
 end)
 
 -- App Shortcuts

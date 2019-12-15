@@ -1,0 +1,48 @@
+bindkey -v
+
+autoload -Uz compinit && compinit
+
+#source /usr/local/share/antigen/antigen.zsh
+test -x .antibody_plugins.sh || antibody bundle < .antibody_plugins.txt > .antibody_plugins.sh
+source .antibody_plugins.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+## local env additions
+path_dir="${HOME}/.config/bash/initenv"
+if [ -d $path_dir ]; then
+    for env_file in ${path_dir}/*.sh; do
+	source $env_file
+    done
+fi
+
+## local path additions
+path_dir="${HOME}/.config/bash/path"
+if [ -d $path_dir ]; then
+    for path_file in ${path_dir}/*.sh; do
+	source $path_file
+    done
+fi
+
+## aliases
+alias_dir="${HOME}/.config/bash/alias"
+if [ -d $alias_dir ]; then
+    for alias_file in ${alias_dir}/*.sh; do
+        source $alias_file
+    done
+fi
+
+# set ipythondir
+test -d "$HOME/.config/ipython" && export IPYTHONDIR=$HOME/.config/ipython
+  
+## User bin preceeds all if exists
+if [ -d "${HOME}/bin" ]; then
+    export PATH=~/bin:"$PATH"
+fi
+
+## editor, prefer nvim / vimr if found on the path, fall back to vim / gvim
+EDITOR=vim && [ -x $(command -v nvim) ] && EDITOR=nvim
+VISUAL=gvim && [ -x $(command -v vimr) ] && VISUAL=vimr
