@@ -195,7 +195,7 @@ c.InteractiveShell.colors = 'LightBG'
 #  forces a full reload of modules whose code may have changed, which the default
 #  reload() function does not.  When deep_reload is off, IPython will use the
 #  normal reload(), but deep_reload will still be available as dreload().
-c.InteractiveShell.deep_reload = False
+#c.InteractiveShell.deep_reload = False
 
 ## Don't call post-execute functions that have failed in the past.
 #c.InteractiveShell.disable_failing_post_execute = False

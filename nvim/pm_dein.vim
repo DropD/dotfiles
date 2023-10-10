@@ -55,6 +55,7 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('Konfekt/FastFold')
     call dein#add('sirver/ultisnips')
     call dein#add('igankevich/mesonic')
+    call dein#add('chrisbra/unicode.vim')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })

@@ -1,12 +1,18 @@
 zsh-users/zsh-completions
+
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/brew
 robbyrussell/oh-my-zsh path:plugins/command-not-found
+
+zpm-zsh/zshmarks
+
 alexrochas/zsh-git-semantic-commits
 alexrochas/zsh-path-environment-explorer
+
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-apple-touchbar
+
 esc/conda-zsh-completion
 laggardkernel/zsh-iterm2
 

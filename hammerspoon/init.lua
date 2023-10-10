@@ -203,27 +203,27 @@ end)
 
 -- App Shortcuts
 ----------------
-function toggleApplication(bundle_id)
-    local app = hs.application.get(bundle_id)
+function toggleApplication(name)
+    local app = hs.application.find(name)
     if app and app:isFrontmost() then
         --hs.alert.show(string.format('%s is frontmost, hiding', app:name()))
         app:hide()
-    else
-        hs.application.launchOrFocusByBundleID(bundle_id)
+    else 
+        hs.application.launchOrFocus(name)
     end
 end
 
 hs.hotkey.bind({"command", "shift"}, "W", function()
-    toggleApplication('com.googlecode.iterm2')
+    toggleApplication('iterm')
 end)
 
 hs.hotkey.bind({"command"}, "F2", function()
-    toggleApplication('com.googlecode.iterm2')
+    toggleApplication('iterm')
 end)
 
 hs.hotkey.bind({"command", "shift"}, "E", function()
-    toggleApplication('com.qvacua.VimR')
+    toggleApplication('Neovide')
 end)
 hs.hotkey.bind({"command"}, "F3", function()
-    toggleApplication('com.qvacua.VimR')
+    toggleApplication('Neovide')
 end)
