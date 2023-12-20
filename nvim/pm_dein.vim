@@ -43,6 +43,13 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('Rykka/riv.vim')
     call dein#add('vim-syntastic/syntastic')
     call dein#add('fenetikm/falcon')
+    call dein#add('yuezk/vim-js')
+    call dein#add('maxmellon/vim-jsx-pretty', {'depends' : ['yuezk/vim-js']})
+    call dein#add('kevinoid/syntastic-use-node-bin')
+    call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
+    call dein#add('junegunn/fzf', {'path': '~/.fzf'})
+    call dein#add('junegunn/fzf.vim', {'depends' : ['junegunn/fzf']})
+    "~ call dein#add('sheerun/vim-polyglot')
 
     "~ call dein#add('SirVer/ultisnips')
 
@@ -51,6 +58,7 @@ if dein#load_state('~/.config/nvim/dein')
 
     " local
     call dein#local('~/.config/nvim/local')
+    call dein#local('/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim')
 
     " Required:
     call dein#end()

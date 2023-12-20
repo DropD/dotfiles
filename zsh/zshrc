@@ -1,10 +1,11 @@
 bindkey -v
 
 autoload -Uz compinit && compinit
+export CLICOLOR=YES
 
 #source /usr/local/share/antigen/antigen.zsh
-test -x .antibody_plugins.sh || antibody bundle < .antibody_plugins.txt > .antibody_plugins.sh
-source .antibody_plugins.sh
+test -x $HOME/.antibody_plugins.sh || antibody bundle < $HOME/.antibody_plugins.txt > $HOME/.antibody_plugins.sh
+source $HOME/.antibody_plugins.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -46,3 +47,14 @@ fi
 ## editor, prefer nvim / vimr if found on the path, fall back to vim / gvim
 EDITOR=vim && [ -x $(command -v nvim) ] && EDITOR=nvim
 VISUAL=gvim && [ -x $(command -v vimr) ] && VISUAL=vimr
+
+## nvm setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+#sourcing virtualenvwrapper
+source virtualenvwrapper_lazy.sh
+
+## pyenv
+eval "$(pyenv init -)"

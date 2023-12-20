@@ -115,6 +115,7 @@ augroup PyMode
     autocmd! Filetype python let g:pymode_lint_checkers = ['pylint', 'pep8']
     autocmd! Filetype python let g:pymode_lint=0 "off by default
     autocmd! Filetype python map <Leader>l :PymodeLint
+    autocmd! Filetype python let g:pymode_rope_lookup_project = 0
 augroup END
 
 augroup Syntastic
@@ -127,6 +128,13 @@ augroup END
 "pymode
 let g:pymode_lint_on_write=0
 
+"javascript
+augroup JavaScript
+    autocmd Filetype javascript set tabstop=2
+    autocmd Filetype javascript set shiftwidth=2
+    autocmd Filetype javascript set expandtab
+augroup END
+
 "syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -138,7 +146,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
 "neoterm
-let g:neoterm_position="vertical"
+let g:neoterm_default_mod="botright vertical"
 let g:neoterm_automap_keys="\t"
 
 "vim-notes
@@ -173,5 +181,18 @@ let g:LanuageClient_serverCommands = {
     \ 'python': ['pyls'],
 \ }
 
+"fzf
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fl :Lines<CR>
+nnoremap <Leader>flb :BLines<CR>
+nnoremap <Leader>fa :Ag<CR>
+nnoremap <Leader>fc :Commits<CR>
+nnoremap <Leader>fcb :BCommits<CR>
+nnoremap <Leader>fh :History:<CR>
+nnoremap <Leader>fhf :History<CR>
+nnoremap <Leader>fhs :History/<CR>
+nnoremap <Leader>fm :Maps<CR>
+nnoremap <Leader>fg :GFiles?<CR>
 
 call RicohSetAppearance()
