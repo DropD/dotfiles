@@ -16,8 +16,8 @@ if dein#load_state('~/.config/nvim/dein')
 
     " Add or remove your plugins here:
     call dein#add('eugen0329/vim-esearch')
-    call dein#add('Shougo/neosnippet.vim')
-    call dein#add('Shougo/neosnippet-snippets')
+    "~ call dein#add('Shougo/neosnippet.vim')
+    "~ call dein#add('Shougo/neosnippet-snippets')
     call dein#add('Marfisc/vorange')
     call dein#add('shougo/unite.vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
@@ -40,12 +40,25 @@ if dein#load_state('~/.config/nvim/dein')
     call dein#add('junegunn/limelight.vim')
     call dein#add('junegunn/goyo.vim')
     call dein#add('Rykka/InstantRst')
+    call dein#add('Rykka/riv.vim')
+    call dein#add('vim-syntastic/syntastic')
+    call dein#add('fenetikm/falcon')
+    call dein#add('yuezk/vim-js')
+    call dein#add('maxmellon/vim-jsx-pretty', {'depends' : ['yuezk/vim-js']})
+    call dein#add('kevinoid/syntastic-use-node-bin')
+    call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
+    call dein#add('junegunn/fzf', {'path': '~/.fzf'})
+    call dein#add('junegunn/fzf.vim', {'depends' : ['junegunn/fzf']})
+    "~ call dein#add('sheerun/vim-polyglot')
+
+    "~ call dein#add('SirVer/ultisnips')
 
     " You can specify revision/branch/tag.
     "~ call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
     " local
     call dein#local('~/.config/nvim/local')
+    call dein#local('/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim')
 
     " Required:
     call dein#end()
