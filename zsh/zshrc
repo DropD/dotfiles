@@ -56,11 +56,6 @@ test -d "$HOME/.config/ipython" && export IPYTHONDIR=$HOME/.config/ipython
 EDITOR=vim && [ -x $(command -v nvim) ] && EDITOR=nvim
 VISUAL=gvim && [ -x $(command -v vimr) ] && VISUAL=vimr
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export CC=gcc-13
-export CXX=g++-13
-
 # ## python setup
 
 export PYENV_ROOT=$HOME/.pyenv
@@ -80,3 +75,6 @@ test -e "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
 if [ -d "${HOME}/bin" ]; then
     export PATH=~/bin:"$PATH"
 fi
+
+## iterm2 integration, should be last lines
+[[ ! -f ${ZDOTDIR:-~}/.iterm2_shell_integration.zsh ]] || source ${ZDOTDIR:-~}/.iterm2_shell_integration.zsh

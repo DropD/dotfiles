@@ -34,3 +34,6 @@ Temporary Items
 *.swo
 
 *egg-info*
+
+#pyenv
+.python-version

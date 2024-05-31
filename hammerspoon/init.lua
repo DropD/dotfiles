@@ -15,6 +15,51 @@ hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
 
 
+-- Toggle bluetooth on sleep / wakeup
+-------------------------------------
+local blueutil = "/opt/homebrew/bin/blueutil"
+local btlog = hs.logger.new("bluetooth")
+
+function bt_status()
+    output, status, type, rc = hs.execute(string.format("%s -p", blueutil))
+    return tonumber(output)
+end
+
+function bt_on()
+    btlog.i("powering on")
+    hs.execute(string.format("%s -p 1", blueutil))
+end
+
+function bt_off()
+    btlog.i("powering off")
+    hs.execute(string.format("%s -p 0", blueutil))
+end
+
+function toggleBluetooth()
+     bluetooth_status = bt_status()
+     if bluetooth_status == 1 then
+         bt_off()
+     elseif bluetooth_status == 0 then
+         bt_on()
+     end
+end
+
+hs.hotkey.bind({"command", "shift"}, "B", function()
+    toggleBluetooth()
+end)
+
+function bt_event_handler(event)
+    if event == hs.caffeinate.watcher.systemWillSleep then
+         bt_off()
+    elseif event == hs.caffeinate.watcher.systemDidWake then
+         bt_on()
+    end
+end
+
+bt_watcher = hs.caffeinate.watcher.new(bt_event_handler)
+bt_watcher:start()
+
+
 -- window management
 --------------------
 hs.hints.style = "vimperator"
