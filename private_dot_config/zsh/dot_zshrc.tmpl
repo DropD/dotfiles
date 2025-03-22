@@ -1,0 +1,62 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+
+bindkey -v
+setopt interactivecomments
+
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export CLICOLOR=1
+
+autoload -Uz compinit && compinit
+
+#source /usr/local/share/antigen/antigen.zsh
+# test -x $HOME/.antibody_plugins.sh || antibody bundle < $HOME/.antibody_plugins.txt > $HOME/.antibody_plugins.sh
+# source $HOME/.antibody_plugins.sh
+source ${ZDOTDIR:-~}/antidote/antidote.zsh
+antidote load
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || source ${ZDOTDIR:-~}/.p10k.zsh
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+## local additions
+path_dir="${ZDOTDIR}/local.d"
+if [ -d $path_dir ]; then
+    for env_file in ${path_dir}/*.zsh; do
+  source $env_file
+    done
+fi
+
+# set ipythondir
+test -d "$HOME/.config/ipython" && export IPYTHONDIR=$HOME/.config/ipython
+
+## editor, prefer nvim / vimr if found on the path, fall back to vim / gvim
+export EDITOR=vim && [ -x $(command -v nvim) ] && EDITOR=nvim
+export VISUAL=gvim && [ -x $(command -v vimr) ] && VISUAL=vimr
+
+# ## python setup
+
+export PYENV_ROOT=$HOME/.pyenv
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+# which pyenv && pyenv virtualenvwrapper_lazy || source virtualenvwrapper_lazy.sh > /dev/null
+
+source $(pyenv prefix $(pyenv version-name))/bin/virtualenvwrapper.sh
+
+## rust env
+test -e "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
+
+## User bin preceeds all if exists
+if [ -d "${HOME}/bin" ]; then
+    export PATH=~/bin:"$PATH"
+fi
+
+## iterm2 integration, should be last lines
+[[ ! -f ${ZDOTDIR:-~}/.iterm2_shell_integration.zsh ]] || source ${ZDOTDIR:-~}/.iterm2_shell_integration.zsh
