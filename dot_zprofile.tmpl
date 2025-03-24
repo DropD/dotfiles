@@ -1,4 +1,4 @@
-export ZDOTDIR=$HOME/.config/zsh
+source .profile
 {{- if eq .chezmoi.os "darwin" }}
 eval "$(/usr/local/bin/brew shellenv)"
 {{- end }}
