@@ -2,4 +2,6 @@ README.md
 {{- if eq .chezmoi.os "darwin" }}
 .config/hypr/
 .config/waybar/
-{{- end }}
+{{- else }}
+.hammerspoon/
+{{- end}}
