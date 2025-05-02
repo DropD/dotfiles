@@ -12,15 +12,12 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export CLICOLOR=1
 
-echo "Setting fpath"
 fpath=($HOME/.config/share/zsh-completions $fpath)
 if type brew >/dev/null; then
-  echo "Adding brew stuff to fpath"
   fpath=($(brew --prefix)/share/zsh-completions $fpath)
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
 
-echo "running compinit"
 autoload -Uz compinit && compinit
 
 #source /usr/local/share/antigen/antigen.zsh
