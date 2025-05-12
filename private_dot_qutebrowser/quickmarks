@@ -7,3 +7,7 @@ aiida-icon https://github.com/aiida-icon/aiida-icon
 ethiopia https://github.com/C2SM/ETHIOPIA
 sirocco https://github.com/C2SM/Sirocco
 docs:aiida-icon https://aiida-icon.github.io/aiida-icon/
+docs:spack:packaging https://spack.readthedocs.io/en/latest/packaging_guide.html
+spack:package:gt4py https://github.com/C2SM/spack-c2sm/tree/main/repos/c2sm/packages/py-gt4py
+spack:package:icon4py https://github.com/C2SM/spack-c2sm/tree/main/repos/c2sm/packages/py-icon4py
+spack:packages https://packages.spack.io/
