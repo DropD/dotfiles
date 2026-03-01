@@ -1,4 +1,4 @@
-scripts_dir=${ZDOTDIR:-~}/zsh_init_scripts/python
+scripts_dir=${ZDOTDIR:-~}/init.d/python
 
 pyenv_script=$scripts_dir/pyenv.zsh
 anaconda_script=$scripts_dir/anaconda3.zsh

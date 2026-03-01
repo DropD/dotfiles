@@ -2,3 +2,6 @@ ZDOTDIR=$HOME/.config/zsh
 . $ZDOTDIR/.zshenv
 CC=gcc-14
 CXX=g++-14
+
+# Added by Radicle.
+export PATH="$PATH:/Users/ricoh/.radicle/bin"
